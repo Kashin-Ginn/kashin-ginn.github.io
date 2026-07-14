@@ -3,200 +3,231 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kashin Ginn</title>
+  <title>Kashin Ginn — My Creations</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg:       #0b0c10;
-      --surface:  #13151a;
-      --border:   #1f2330;
-      --ink:      #e8eaf0;
-      --muted:    #6b7185;
-      --accent:   #7c6aff;
-      --accent2:  #00e5b0;
-      --mono:     'Space Mono', monospace;
-      --sans:     'Space Grotesk', sans-serif;
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #111;
+      color: #ccc;
+      min-height: 100vh;
     }
 
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      overflow: hidden;
-    }
+    a { color: inherit; text-decoration: none; }
 
-    /* Pixel grid background */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: 0.35;
-      pointer-events: none;
-    }
-
-    .stage {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+    header {
+      background: #1a1a1a;
+      border-bottom: 1px solid #2a2a2a;
       padding: 2rem;
-      position: relative;
+      text-align: center;
     }
 
-    /* Glow orb */
-    .orb {
-      position: absolute;
-      width: 480px;
-      height: 480px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(124,106,255,0.18) 0%, transparent 70%);
-      pointer-events: none;
-      animation: pulse 4s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50%       { transform: scale(1.08); opacity: 0.7; }
-    }
-
-    .tag {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      color: var(--accent2);
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.2s forwards;
-    }
-
-    h1 {
-      font-size: clamp(2.8rem, 8vw, 5.5rem);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.35s forwards;
-    }
-
-    h1 span {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .sub {
-      margin-top: 1rem;
-      font-size: clamp(0.95rem, 2vw, 1.1rem);
-      color: var(--muted);
-      max-width: 34ch;
-      line-height: 1.6;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.5s forwards;
-    }
-
-    .cta {
-      margin-top: 2.8rem;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.65s forwards;
-    }
-
-    .cta a {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.85rem 2rem;
-      border-radius: 6px;
-      background: var(--accent);
-      color: #fff;
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 0 0 0 rgba(124,106,255,0);
-    }
-    .cta a:hover {
-      background: #9585ff;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(124,106,255,0.35);
-    }
-    .cta a svg { width: 16px; height: 16px; fill: currentColor; }
-
-    .links {
-      margin-top: 2rem;
-      display: flex;
-      gap: 1.4rem;
-      justify-content: center;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.8s forwards;
-    }
-    .links a {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      text-decoration: none;
-      text-transform: uppercase;
+    .back {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 1.5rem;
       transition: color 0.2s;
     }
-    .links a:hover { color: var(--accent2); }
+    .back:hover { color: #fff; }
+    .back::before { content: '← '; }
 
-    .corner {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      font-family: var(--mono);
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #f0f0f0;
+    }
+
+    header p {
+      margin-top: 0.4rem;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .header-links {
+      margin-top: 1.2rem;
+      display: flex;
+      gap: 0.7rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      border: 1px solid #333;
+      background: #222;
+      color: #aaa;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .pill:hover { border-color: #888; color: #f0f0f0; }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      border-color: #555;
+      transform: translateY(-2px);
+    }
+
+    .card-thumb {
+      width: 100%;
+      aspect-ratio: 2 / 1;
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .card-body {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .card-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f0f0f0;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: #777;
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .card-footer {
+      margin-top: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .badge {
       font-size: 0.65rem;
-      color: var(--border);
-      letter-spacing: 0.1em;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      background: #2a2a2a;
+      color: #aaa;
     }
+    .badge-paid { background: #222; color: #bbb; border: 1px solid #444; }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .card-link {
+      font-size: 0.75rem;
+      color: #888;
+      font-weight: 500;
+      transition: color 0.2s;
     }
+    .card-link:hover { color: #f0f0f0; }
 
-    @media (max-width: 480px) {
-      .orb { width: 280px; height: 280px; }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #2a2a2a;
+      font-size: 0.78rem;
+      color: #444;
     }
+    footer a { color: #666; transition: color 0.2s; }
+    footer a:hover { color: #ccc; }
   </style>
 </head>
 <body>
-  <div class="stage">
-    <div class="orb"></div>
 
-    <p class="tag">Game Dev &amp; Addon Creator</p>
+  <header>
+    <a class="back" href="https://kashin-ginn.github.io/">kashin-ginn.github.io</a>
+    <h1>Kashin Ginn</h1>
+    <p>Game developer · Construct 3 addons &amp; tools</p>
+    <div class="header-links">
+      <a class="pill" href="https://kashin-ginn.itch.io/" target="_blank" rel="noopener">🎮 itch.io</a>
+      <a class="pill" href="https://www.youtube.com/@KashinGinn" target="_blank" rel="noopener">▶ YouTube</a>
+      <a class="pill" href="https://ko-fi.com/kashinginn" target="_blank" rel="noopener">☕ Ko-fi</a>
+      <a class="pill" href="https://linktr.ee/kashinginn" target="_blank" rel="noopener">🔗 Links</a>
+    </div>
+  </header>
 
-    <h1>Kashin<br><span>Ginn</span></h1>
+  <main>
 
-    <p class="sub">Building puzzle games and Construct 3 tools, one block at a time.</p>
-
-    <div class="cta">
-      <a href="https://kashin-ginn.github.io/my-creations/">
-        <svg viewBox="0 0 16 16"><path d="M2 3h12v2H2zm0 4h8v2H2zm0 4h10v2H2z"/></svg>
-        View my creations
+    <p class="section-title">Games</p>
+    <div class="cards">
+      <a class="card" href="https://kashin-ginn.itch.io/dodos-revenge-nuclear-drop" target="_blank" rel="noopener">
+        <div class="card-thumb"><img src="https://img.itch.zone/aW1nLzI4MjQ2NDYxLnBuZw==/315x250%23c/El9mtz.png" alt="Dodo's Revenge: Nuclear Drop" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div class="card-body">
+          <div class="card-name">Dodo's Revenge: Nuclear Drop</div>
+          <div class="card-desc">The Dodo is back! Drag and aim poo at the pirates. Survive the rounds!</div>
+          <div class="card-footer">
+            <span class="badge">Free · Play in browser</span>
+            <span class="card-link">itch.io ↗</span>
+          </div>
+        </div>
       </a>
     </div>
 
-    <div class="links">
-      <a href="https://www.youtube.com/@KashinGinn" target="_blank" rel="noopener">YouTube</a>
-      <a href="https://ko-fi.com/kashinginn" target="_blank" rel="noopener">Ko-fi</a>
+    <p class="section-title">Construct 3 Addons</p>
+    <div class="cards">
+      <a class="card" href="https://kashin-ginn.itch.io/local-notification-plus" target="_blank" rel="noopener">
+        <div class="card-thumb"><img src="https://img.itch.zone/aW1nLzI1MDI1NTg0LnBuZw==/315x250%23c/DhpAr4.png" alt="Local Notification Plus" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div class="card-body">
+          <div class="card-name">Local Notification Plus</div>
+          <div class="card-desc">Local notification system for mobile games — scheduling, custom sounds, vibration and more.</div>
+          <div class="card-footer">
+            <span class="badge badge-paid">$15.69</span>
+            <span class="card-link">itch.io ↗</span>
+          </div>
+        </div>
+      </a>
     </div>
-  </div>
 
-  <p class="corner">kashin-ginn.github.io</p>
+  </main>
+
+  <footer>
+    <p>© Kashin Ginn &nbsp;·&nbsp; <a href="https://kashin-ginn.itch.io/" target="_blank" rel="noopener">itch.io</a> &nbsp;·&nbsp; <a href="https://ko-fi.com/kashinginn" target="_blank" rel="noopener">Ko-fi</a> &nbsp;·&nbsp; <a href="https://www.youtube.com/@KashinGinn" target="_blank" rel="noopener">YouTube</a></p>
+  </footer>
+
 </body>
 </html>
