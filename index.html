@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kashin Ginn — My Creations</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,19 +19,48 @@
 
     a { color: inherit; text-decoration: none; }
 
+    /* ── HEADER ── */
     header {
       background: #1a1a1a;
       border-bottom: 1px solid #2a2a2a;
-      padding: 2rem;
+      padding: 2.5rem 2rem 2rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Glow orb behind the name */
+    header::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,106,255,0.18) 0%, transparent 70%);
+      pointer-events: none;
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50%       { transform: translate(-50%, -50%) scale(1.12); opacity: 0.6; }
     }
 
     header h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.8rem;
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1;
+      color: #f0f0f0;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.2s forwards;
+    }
+
+    header h1 span {
       background: linear-gradient(135deg, #7c6aff 0%, #00e5b0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -41,6 +71,9 @@
       margin-top: 0.6rem;
       color: #666;
       font-size: 0.9rem;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.4s forwards;
     }
 
     .header-links {
@@ -49,6 +82,9 @@
       gap: 0.7rem;
       justify-content: center;
       flex-wrap: wrap;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.55s forwards;
     }
 
     .pill {
@@ -66,6 +102,12 @@
     }
     .pill:hover { border-color: #888; color: #f0f0f0; }
 
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MAIN ── */
     main {
       max-width: 860px;
       margin: 0 auto;
@@ -100,18 +142,21 @@
       flex-direction: column;
     }
     .card:hover {
-      border-color: #555;
+      border-color: #5bc8f5;
       transform: translateY(-2px);
+      box-shadow: 0 0 18px rgba(91, 200, 245, 0.25);
     }
 
     .card-thumb {
       width: 100%;
       aspect-ratio: 2 / 1;
       background: #222;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
+    }
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .card-body {
@@ -176,22 +221,23 @@
 <body>
 
   <header>
-    <h1>Kashin Ginn</h1>
+    <h1>Kashin <span>Ginn</span></h1>
     <p>Game developer · Construct 3 addons &amp; tools</p>
     <div class="header-links">
       <a class="pill" href="https://kashin-ginn.itch.io/" target="_blank" rel="noopener">🎮 itch.io</a>
-      <a class="pill" href="https://www.youtube.com/@KashinGinn" target="_blank" rel="noopener">▶ YouTube</a>
       <a class="pill" href="https://ko-fi.com/kashinginn" target="_blank" rel="noopener">☕ Ko-fi</a>
+      <a class="pill" href="https://www.construct.net/en/users/1725178/kashin-ginn/asset-store" target="_blank" rel="noopener">🅒 Scirra</a>
+      <a class="pill" href="https://www.youtube.com/@KashinGinn" target="_blank" rel="noopener">▶ YouTube</a>
       <a class="pill" href="https://linktr.ee/kashinginn" target="_blank" rel="noopener">🔗 Links</a>
     </div>
   </header>
 
   <main>
 
-    <p class="section-title">Games</p>
+    <p class="section-title">My Construct 3 Games</p>
     <div class="cards">
       <a class="card" href="https://kashin-ginn.itch.io/dodos-revenge-nuclear-drop" target="_blank" rel="noopener">
-        <div class="card-thumb"><img src="https://img.itch.zone/aW1nLzI4MjQ2NDYxLnBuZw==/315x250%23c/El9mtz.png" alt="Dodo's Revenge: Nuclear Drop" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div class="card-thumb"><img src="https://img.itch.zone/aW1nLzI4MjQ2NDYxLnBuZw==/315x250%23c/El9mtz.png" alt="Dodo's Revenge: Nuclear Drop" /></div>
         <div class="card-body">
           <div class="card-name">Dodo's Revenge: Nuclear Drop</div>
           <div class="card-desc">The Dodo is back! Drag and aim poo at the pirates. Survive the rounds!</div>
@@ -203,10 +249,10 @@
       </a>
     </div>
 
-    <p class="section-title">Construct 3 Addons</p>
+    <p class="section-title">My Construct 3 Addons</p>
     <div class="cards">
       <a class="card" href="https://kashin-ginn.itch.io/local-notification-plus" target="_blank" rel="noopener">
-        <div class="card-thumb"><img src="https://img.itch.zone/aW1nLzI1MDI1NTg0LnBuZw==/315x250%23c/DhpAr4.png" alt="Local Notification Plus" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div class="card-thumb"><img src="https://img.itch.zone/aW1nLzI1MDI1NTg0LnBuZw==/315x250%23c/DhpAr4.png" alt="Local Notification Plus" /></div>
         <div class="card-body">
           <div class="card-name">Local Notification Plus</div>
           <div class="card-desc">Local notification system for mobile games — scheduling, custom sounds, vibration and more.</div>
@@ -216,6 +262,39 @@
           </div>
         </div>
       </a>
+    </div>
+
+    <p class="section-title">Construct 3 Addons (SDK V2)</p>
+    <div class="cards">
+
+      <a class="card" href="https://www.construct.net/en/make-games/addons/1495/easy-shake" target="_blank" rel="noopener">
+        <div class="card-thumb" style="display:flex;align-items:center;justify-content:center;background:#1e1e1e;">
+          <img src="https://construct-static.com/images/v1771/uploads/addon/1495/icon/138742/icon.png" alt="Easy Shake" style="width:80px;height:80px;object-fit:contain;" />
+        </div>
+        <div class="card-body">
+          <div class="card-name">Easy Shake</div>
+          <div class="card-desc">A simple and flexible camera shake addon for Construct 3, built with SDK V2.</div>
+          <div class="card-footer">
+            <span class="badge">Free</span>
+            <span class="card-link">construct.net ↗</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="https://www.construct.net/en/make-games/addons/1497/rex-layer" target="_blank" rel="noopener">
+        <div class="card-thumb" style="display:flex;align-items:center;justify-content:center;background:#1e1e1e;">
+          <img src="https://construct-static.com/images/v1771/uploads/addon/1497/icon/135677/icon.png" alt="Rex Layer" style="width:80px;height:80px;object-fit:contain;" />
+        </div>
+        <div class="card-body">
+          <div class="card-name">Rex Layer</div>
+          <div class="card-desc">A Construct 3 SDK V2 addon for advanced layer manipulation and control.</div>
+          <div class="card-footer">
+            <span class="badge">Free</span>
+            <span class="card-link">construct.net ↗</span>
+          </div>
+        </div>
+      </a>
+
     </div>
 
   </main>
