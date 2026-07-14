@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kashin Ginn — My Creations</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -25,24 +25,20 @@
       text-align: center;
     }
 
-    .back {
-      display: inline-block;
-      font-size: 0.8rem;
-      color: #666;
-      margin-bottom: 1.5rem;
-      transition: color 0.2s;
-    }
-    .back:hover { color: #fff; }
-    .back::before { content: '← '; }
-
     header h1 {
-      font-size: 1.8rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.8rem;
       font-weight: 700;
-      color: #f0f0f0;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      background: linear-gradient(135deg, #7c6aff 0%, #00e5b0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     header p {
-      margin-top: 0.4rem;
+      margin-top: 0.6rem;
       color: #666;
       font-size: 0.9rem;
     }
@@ -180,7 +176,6 @@
 <body>
 
   <header>
-    <a class="back" href="https://kashin-ginn.github.io/">kashin-ginn.github.io</a>
     <h1>Kashin Ginn</h1>
     <p>Game developer · Construct 3 addons &amp; tools</p>
     <div class="header-links">
